@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://UI/FontNormal.tres" type="DynamicFont" id=1]
+
+[node name="Gameplay" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 64.0
+margin_top = 16.0
+margin_right = 192.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Gameplay Screen"
+align = 1
