@@ -89,6 +89,16 @@ attack={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="SOLID"
+2d_physics/layer_2="PLAYER"
+2d_physics/layer_3="ENEMY"
+2d_physics/layer_4="PLAYER_HURTBOX"
+2d_physics/layer_5="ENEMY_HURTBOX"
+2d_physics/layer_6="PLAYER_DAMAGE_AREA"
+2d_physics/layer_7="ENEMY_DAMAGE_AREA"
+
 [physics]
 
 common/enable_pause_aware_picking=true
