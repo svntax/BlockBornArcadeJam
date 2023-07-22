@@ -22,6 +22,3 @@ position = Vector2( 80, 88 )
 
 [node name="SwordEnemy" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 168, 128 )
-
-[node name="SwordEnemy2" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 168, 128 )

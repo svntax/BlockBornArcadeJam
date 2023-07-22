@@ -10,6 +10,11 @@ onready var hitboxes = $Hitboxes
 onready var state_machine = $StateMachine
 onready var animation_player = $AnimationPlayer
 onready var damage_immunity_timer = $DamageImmunityTimer
+onready var attack_timer = $AttackTimer
+
+onready var attack_damage_areas = [
+	$Hitboxes/MeleeAttack/CollisionShape2D
+]
 
 onready var player = null
 
@@ -56,6 +61,16 @@ func damage(amount: int) -> void:
 func can_take_damage() -> bool:
 	return damage_immunity_timer.is_stopped()
 
+func reset_damage_areas() -> void:
+	for collision in attack_damage_areas:
+		collision.disabled = true
+
+func start_attack_timer() -> void:
+	attack_timer.start(rand_range(1, 3))
+
+func can_attack() -> bool:
+	return state_machine.state == "IDLE"
+
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if state_machine.state == "ATTACK" and anim_name == "attack":
 		state_machine.set_state("IDLE")
@@ -65,3 +80,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_HurtBox_area_entered(area):
 	# Assumes that only PLAYER damage areas are detected
 	damage(1)
+
+func _on_AttackTimer_timeout():
+	if can_attack():
+		state_machine.set_state("ATTACK")

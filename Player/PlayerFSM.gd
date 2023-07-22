@@ -40,7 +40,7 @@ func _enter_state(new_state, _old_state):
 
 func _exit_state(old_state, _new_state):
 	if old_state == "ATTACK":
-		actor.reset_damage_areas()
+		actor.call_deferred("reset_damage_areas")
 
 func is_move_pressed() -> bool:
 	return Input.is_action_pressed("move_left") \
