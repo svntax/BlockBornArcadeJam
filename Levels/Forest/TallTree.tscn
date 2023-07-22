@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Levels/Forest/tall_forest_tree.png" type="Texture" id=1]
+
+[node name="TallTree" type="Node2D"]
+
+[node name="TallForestTree" type="Sprite" parent="."]
+position = Vector2( 0, -56 )
+texture = ExtResource( 1 )

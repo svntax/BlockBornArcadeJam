@@ -1,12 +1,267 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://UI/FontNormal.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/SwordEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Forest/ForestTileSet.tres" type="TileSet" id=4]
+[ext_resource path="res://Levels/Forest/TallTree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/blue_sky_bg.png" type="Texture" id=6]
+[ext_resource path="res://Levels/Forest/tall_forest_tree_back.png" type="Texture" id=7]
 
 [node name="Gameplay" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="Label" type="Label" parent="."]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 256, 0 )
+
+[node name="TallForestTreeBack" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 32, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack2" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 56, 104 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack3" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 80, 96 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack4" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 120, 104 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack5" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 152, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack6" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 168, 112 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack7" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 200, 104 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack8" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 232, 96 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack9" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 264, 104 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack10" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 304, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack11" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 328, 104 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack12" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 384, 104 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack13" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 416, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack14" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 488, 104 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack15" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 560, 96 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack16" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+position = Vector2( 688, 96 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="BlueSkyBg" type="Sprite" parent="ParallaxBackground/SkyLayer"]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="TreesLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TallForestTreeBack" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 32, 94 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack2" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 56, 102 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack3" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 80, 94 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack4" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 120, 102 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack5" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 152, 94 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack6" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 168, 110 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack7" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 200, 102 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack8" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 232, 94 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack9" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 264, 102 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack10" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 304, 94 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack11" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 328, 102 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack12" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 384, 102 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack13" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 416, 94 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack14" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 488, 102 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack15" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 560, 94 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="TallForestTreeBack16" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 688, 94 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 256, 0 )
+
+[node name="TileMapBack" type="TileMap" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, -8 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0 )
+
+[node name="Midground" type="Node2D" parent="."]
+z_index = -5
+
+[node name="TallTree" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 0, 120 )
+
+[node name="TallTree2" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 48, 120 )
+z_index = 1
+
+[node name="TallTree3" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 96, 120 )
+
+[node name="TallTree4" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 144, 120 )
+
+[node name="TallTree5" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 192, 120 )
+
+[node name="TallTree6" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 240, 120 )
+z_index = 1
+
+[node name="TallTree7" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 288, 120 )
+
+[node name="TallTree8" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 336, 120 )
+
+[node name="TallTree9" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 384, 120 )
+z_index = 1
+
+[node name="TallTree10" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 432, 120 )
+
+[node name="TallTree11" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 480, 120 )
+
+[node name="TallTree12" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 528, 120 )
+
+[node name="TallTree13" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 672, 120 )
+z_index = 1
+
+[node name="TallTree14" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 720, 120 )
+
+[node name="TallTree15" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 864, 120 )
+
+[node name="TileMapGrassBack" type="TileMap" parent="."]
+position = Vector2( 0, -8 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 262144, 5, 0, 262145, 5, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 5, 0, 262151, 2, 0, 262152, 4, 0, 262153, 5, 0, 262154, 4, 0, 262155, 3, 0, 262156, 4, 0, 262157, 4, 0, 262158, 4, 0, 262159, 3, 0, 262160, 3, 0, 262161, 5, 0, 262162, 3, 0, 262163, 5, 0, 262164, 2, 0, 262165, 5, 0, 262166, 3, 0, 262167, 5, 0, 262168, 3, 0, 262169, 3, 0, 262170, 5, 0, 262171, 5, 0, 262172, 3, 0, 262173, 2, 0, 262174, 2, 0, 262175, 4, 0 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 56, 184 )
+
+[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
+current = true
+limit_left = 0
+limit_top = 0
+limit_bottom = 224
+drag_margin_h_enabled = true
+editor_draw_drag_margin = true
+
+[node name="SwordEnemy" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 184, 192 )
+
+[node name="TileMapFrontGrass" type="TileMap" parent="."]
+position = Vector2( 0, -8 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 458752, 2, 0, 458753, 4, 0, 458754, 3, 0, 458755, 2, 0, 458756, 2, 0, 458757, 3, 0, 458758, 2, 0, 458759, 5, 0, 458760, 2, 0, 458761, 5, 0, 458762, 3, 0, 458763, 4, 0, 458764, 3, 0, 458765, 2, 0, 458766, 2, 0, 458767, 4, 0, 458768, 2, 0, 458769, 4, 0, 458770, 2, 0, 458771, 4, 0, 458772, 5, 0, 458773, 4, 0, 458774, 3, 0, 458775, 4, 0, 458776, 2, 0, 458777, 2, 0, 458778, 5, 0, 458779, 5, 0, 458780, 2, 0, 458781, 2, 0, 458782, 5, 0, 458783, 2, 0 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Label" type="Label" parent="UI"]
 margin_left = 64.0
 margin_top = 16.0
 margin_right = 192.0
@@ -14,11 +269,3 @@ margin_bottom = 27.0
 custom_fonts/font = ExtResource( 1 )
 text = "Gameplay Screen"
 align = 1
-
-[node name="YSort" type="YSort" parent="."]
-
-[node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 80, 88 )
-
-[node name="SwordEnemy" parent="YSort" instance=ExtResource( 3 )]
-position = Vector2( 168, 128 )
