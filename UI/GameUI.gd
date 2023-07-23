@@ -19,11 +19,15 @@ onready var game_over_timer = $GameOverTimer
 onready var game_over_label = $"%GameOverLabel"
 onready var game_over_finish_timer = $GameOverFinishTimer
 onready var animation_player = $AnimationPlayer
+onready var go_label = $"%GoText"
+onready var show_go_delay_timer = $ShowGoDelayTimer
+onready var effects_player = $EffectsPlayer
 
 func _ready():
 	enemy_label.hide()
 	enemy_healthbar.hide()
 	game_over_label.hide()
+	go_label.hide()
 	
 	time_bonus_timer.start()
 	update_time_label()
@@ -37,6 +41,9 @@ func _ready():
 	player_healthbar.max_value = player.get_max_hp()
 	player_healthbar.value = player.get_hp()
 	player.connect("health_changed", self, "_on_player_hp_changed")
+
+func show_go_sign() -> void:
+	show_go_delay_timer.start()
 
 func _on_player_hp_changed(new_hp: int, max_hp: int) -> void:
 	player_healthbar.max_value = max_hp
@@ -90,3 +97,6 @@ func _on_TimeBonusTimer_timeout():
 func update_score_label() -> void:
 	var padded_score = str(score).pad_zeros(8)
 	score_label.text = "SCORE\n" + padded_score
+
+func _on_ShowGoDelayTimer_timeout():
+	effects_player.play("flash_go")

@@ -6,6 +6,8 @@ const ROOM_WIDTH = 256
 export (NodePath) var camera_node_path = NodePath()
 var camera_node
 
+var game_ui
+
 var debug_color = Color(1, 0, 0, 0.5)
 var room_rect = Rect2(0, 0, ROOM_WIDTH, 224)
 
@@ -15,6 +17,12 @@ func _ready():
 	if not Engine.is_editor_hint():
 		camera_node = get_node(camera_node_path)
 		self.connect("body_entered", self, "_on_body_entered")
+		
+		var game_ui_list = get_tree().get_nodes_in_group("GameUI")
+		if game_ui_list.empty():
+			printerr("WARNING: Could not find the GameUI when connecting BattleRoom.")
+			return
+		game_ui = game_ui_list[0]
 
 func _process(_delta):
 	if Engine.is_editor_hint():
@@ -48,6 +56,9 @@ func clear_room() -> void:
 	camera_node.limit_right = 100000
 	camera_node.smoothing_enabled = false
 	camera_node.reset_follow_target_to_player()
+	
+	if game_ui != null:
+		game_ui.show_go_sign()
 
 func _on_enemy_death(_enemy_points_value: int) -> void:
 	enemy_count -= 1
