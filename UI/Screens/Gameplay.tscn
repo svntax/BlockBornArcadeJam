@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://UI/FontNormal.tres" type="DynamicFont" id=1]
+[ext_resource path="res://UI/GameUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemies/SwordEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/Forest/ForestTileSet.tres" type="TileSet" id=4]
@@ -271,6 +271,7 @@ left_wall_path = NodePath("../LeftWall")
 [node name="Entities" type="YSort" parent="."]
 
 [node name="Player" parent="Entities" instance=ExtResource( 2 )]
+unique_name_in_owner = true
 position = Vector2( 56, 184 )
 
 [node name="SwordEnemy" parent="Entities" instance=ExtResource( 3 )]
@@ -341,11 +342,4 @@ spawn_time = 4.0
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="Label" type="Label" parent="UI"]
-margin_left = 64.0
-margin_top = 16.0
-margin_right = 192.0
-margin_bottom = 27.0
-custom_fonts/font = ExtResource( 1 )
-text = "Gameplay Screen"
-align = 1
+[node name="GameUI" parent="UI" instance=ExtResource( 1 )]

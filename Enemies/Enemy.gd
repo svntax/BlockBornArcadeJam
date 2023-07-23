@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
 signal death()
+signal enemy_health_changed(enemy_name, current_hp, max_hp)
 
 export (int) var speed = 32
 export (int) var melee_distance_x = 24
 export (int) var melee_distance_y = 8
 export (int) var hp = 3
+var max_hp
 
 onready var velocity = Vector2()
 
@@ -25,7 +27,11 @@ onready var attack_damage_areas = [
 onready var player = null
 
 func _ready():
+	max_hp = hp
 	player = get_tree().get_nodes_in_group("Players")[0]
+
+func get_enemy_name() -> String:
+	return "Adventurer"
 
 func _physics_process(_delta: float) -> void:
 	if can_move():
@@ -72,12 +78,14 @@ func can_move() -> bool:
 
 func damage(amount: int) -> void:
 	if can_take_damage():
-		hp -= 1
+		hp -= amount
 		if hp > 0:
 			state_machine.set_state("HURT")
 			damage_immunity_timer.start()
 		else:
+			hp = 0
 			state_machine.set_state("DEAD")
+		emit_signal("enemy_health_changed", get_enemy_name(), hp, max_hp)
 
 func can_take_damage() -> bool:
 	return damage_immunity_timer.is_stopped() and state_machine.state != "DEAD"
@@ -87,7 +95,7 @@ func reset_damage_areas() -> void:
 		collision.disabled = true
 
 func start_attack_timer() -> void:
-	attack_timer.start(rand_range(1, 3))
+	attack_timer.start(rand_range(0.5, 1.25))
 
 func can_attack() -> bool:
 	return state_machine.state == "IDLE"

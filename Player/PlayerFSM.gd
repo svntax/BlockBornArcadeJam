@@ -1,6 +1,6 @@
 extends "res://StateMachine.gd"
 
-# IDLE, WALK, ATTACK, HURT
+# IDLE, WALK, ATTACK, HURT, DEAD
 
 const CONTROLLABLE_STATES = ["IDLE", "WALK"]
 
@@ -37,6 +37,9 @@ func _enter_state(new_state, _old_state):
 	elif new_state == "HURT":
 		actor.velocity = Vector2()
 		actor.animation_player.play("hurt")
+	elif new_state == "DEAD":
+		actor.velocity = Vector2()
+		actor.animation_player.play("death", -1, 0.75)
 
 func _exit_state(old_state, _new_state):
 	if old_state == "ATTACK":

@@ -1,0 +1,165 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/MainUITheme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/GameUI.gd" type="Script" id=2]
+[ext_resource path="res://UI/NotJamSlabSerif11.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 11
+outline_size = 1
+outline_color = Color( 0.00784314, 0.290196, 0.792157, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameOverMenu/GameOverLabel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 88 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GameOverMenu/GameOverLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "game_over"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameOverMenu/GameOverLabel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 64, -48 ), Vector2( 64, 88 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GameOverMenu/GameOverLabel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="GameUI" type="Control" groups=["GameUI"]]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 1
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="PlayerLabel" type="RichTextLabel" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 128.0
+margin_bottom = 20.0
+mouse_filter = 1
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+bbcode_enabled = true
+bbcode_text = "PLAYER"
+meta_underlined = false
+text = "PLAYER"
+scroll_active = false
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="."]
+margin_left = 8.0
+margin_top = 23.0
+margin_right = 112.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 104, 6 )
+mouse_filter = 1
+value = 50.0
+percent_visible = false
+
+[node name="EnemyLabel" type="RichTextLabel" parent="."]
+margin_left = 8.0
+margin_top = 40.0
+margin_right = 128.0
+margin_bottom = 52.0
+mouse_filter = 1
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+bbcode_enabled = true
+bbcode_text = "Enemy"
+meta_underlined = false
+text = "Enemy"
+scroll_active = false
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="."]
+margin_left = 8.0
+margin_top = 55.0
+margin_right = 60.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 52, 4 )
+mouse_filter = 1
+value = 50.0
+percent_visible = false
+
+[node name="HideEnemyStatsTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="GameOverFinishTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="GameOverMenu" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+mouse_filter = 1
+
+[node name="GameOverLabel" type="Label" parent="GameOverMenu"]
+unique_name_in_owner = true
+margin_left = 64.0
+margin_top = 88.0
+margin_right = 192.0
+margin_bottom = 136.0
+mouse_filter = 1
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
+custom_constants/shadow_as_outline = 0
+custom_fonts/font = SubResource( 1 )
+text = "GAME OVER"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/game_over = SubResource( 3 )
+
+[connection signal="timeout" from="HideEnemyStatsTimer" to="." method="_on_HideEnemyStatsTimer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
+[connection signal="timeout" from="GameOverFinishTimer" to="." method="_on_GameOverFinishTimer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

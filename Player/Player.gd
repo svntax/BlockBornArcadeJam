@@ -1,7 +1,12 @@
 extends KinematicBody2D
 
+signal health_changed(new_hp, max_hp)
+
 onready var speed = 64
 onready var velocity = Vector2()
+
+onready var max_hp = 3#16
+onready var hp = max_hp
 
 onready var body_root = $Body
 onready var hitboxes = $Hitboxes
@@ -40,13 +45,25 @@ func move() -> void:
 func can_move() -> bool:
 	return state_machine.state in ["IDLE", "WALK"]
 
+func get_hp() -> int:
+	return hp
+
+func get_max_hp() -> int:
+	return max_hp
+
 func damage(amount: int) -> void:
 	if can_take_damage():
-		state_machine.set_state("HURT")
-		damage_immunity_timer.start()
+		hp -= amount
+		if hp > 0:
+			state_machine.set_state("HURT")
+			damage_immunity_timer.start()
+		else:
+			hp = 0
+			state_machine.set_state("DEAD")
+		emit_signal("health_changed", hp, max_hp)
 
 func can_take_damage() -> bool:
-	return damage_immunity_timer.is_stopped()
+	return damage_immunity_timer.is_stopped() and state_machine.state != "DEAD"
 
 func reset_damage_areas() -> void:
 	for collision in attack_damage_areas:

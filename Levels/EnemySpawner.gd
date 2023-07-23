@@ -41,6 +41,12 @@ func spawn_enemy() -> void:
 	
 	# Connect enemy death event to battle room
 	enemy.connect("death", battle_room, "_on_enemy_death")
+	var game_ui_list = get_tree().get_nodes_in_group("GameUI")
+	if game_ui_list.empty():
+		printerr("WARNING: Could not find the GameUI when spawning enemy.")
+		return
+	var game_ui = game_ui_list[0]
+	enemy.connect("enemy_health_changed", game_ui, "set_enemy_stats")
 
 func get_enemy_count() -> int:
 	return repeat_count
