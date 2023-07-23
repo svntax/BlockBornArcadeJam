@@ -1,8 +1,12 @@
 extends KinematicBody2D
 
+signal death()
+
 export (int) var speed = 32
 export (int) var melee_distance_x = 24
 export (int) var melee_distance_y = 8
+export (int) var hp = 3
+
 onready var velocity = Vector2()
 
 onready var body_root = $Body
@@ -11,6 +15,8 @@ onready var state_machine = $StateMachine
 onready var animation_player = $AnimationPlayer
 onready var damage_immunity_timer = $DamageImmunityTimer
 onready var attack_timer = $AttackTimer
+onready var remove_timer = $RemoveTimer
+onready var flash_remove_count = 0 # Flashing effect when being removed
 
 onready var attack_damage_areas = [
 	$Hitboxes/MeleeAttack/CollisionShape2D
@@ -27,16 +33,27 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide(velocity)
 	# Face the right direction
-	if velocity.x < 0:
+	set_face_direction(velocity.x)
+
+func set_face_direction(dir: int) -> void:
+	if sign(dir) < 0:
 		body_root.scale.x = -1
 		hitboxes.scale.x = -1
-	elif velocity.x > 0:
+	elif sign(dir) > 0:
 		body_root.scale.x = 1
 		hitboxes.scale.x = 1
 
 func walk_towards_player() -> void:
 	var dir = global_position.direction_to(player.global_position)
 	velocity = dir * speed
+
+func face_player() -> void:
+	var dir = 0
+	if player.global_position.x < global_position.x:
+		dir = -1
+	else:
+		dir = 1
+	set_face_direction(dir)
 
 func close_to_player() -> bool:
 	var dist_x = abs(global_position.x - player.global_position.x)
@@ -55,11 +72,15 @@ func can_move() -> bool:
 
 func damage(amount: int) -> void:
 	if can_take_damage():
-		state_machine.set_state("HURT")
-		damage_immunity_timer.start()
+		hp -= 1
+		if hp > 0:
+			state_machine.set_state("HURT")
+			damage_immunity_timer.start()
+		else:
+			state_machine.set_state("DEAD")
 
 func can_take_damage() -> bool:
-	return damage_immunity_timer.is_stopped()
+	return damage_immunity_timer.is_stopped() and state_machine.state != "DEAD"
 
 func reset_damage_areas() -> void:
 	for collision in attack_damage_areas:
@@ -84,3 +105,11 @@ func _on_HurtBox_area_entered(area):
 func _on_AttackTimer_timeout():
 	if can_attack():
 		state_machine.set_state("ATTACK")
+
+func _on_RemoveTimer_timeout():
+	body_root.visible = !body_root.visible
+	flash_remove_count += 1
+	if flash_remove_count > 6:
+		queue_free()
+	else:
+		remove_timer.start(0.1)
