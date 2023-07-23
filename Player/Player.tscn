@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/slime_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Player/PlayerFSM.gd" type="Script" id=3]
 [ext_resource path="res://Player/slime_death.png" type="Texture" id=4]
+[ext_resource path="res://Player/slime_shadow_spritesheet.png" type="Texture" id=5]
+[ext_resource path="res://Player/PlayerShadow.gd" type="Script" id=6]
+[ext_resource path="res://Player/slime_shadow_death.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 14, 3 )
@@ -213,6 +216,13 @@ script = ExtResource( 1 )
 
 [node name="Body" type="Node2D" parent="."]
 
+[node name="Shadow" type="Sprite" parent="Body"]
+position = Vector2( 0, -21 )
+texture = ExtResource( 5 )
+hframes = 5
+script = ExtResource( 6 )
+sprite_target_path = NodePath("../Sprite")
+
 [node name="Sprite" type="Sprite" parent="Body"]
 position = Vector2( 0, -23 )
 texture = ExtResource( 2 )
@@ -223,6 +233,14 @@ visible = false
 position = Vector2( 0, -23 )
 texture = ExtResource( 4 )
 hframes = 3
+
+[node name="Shadow2" type="Sprite" parent="Body/DeathSprite"]
+show_behind_parent = true
+position = Vector2( 0, 2 )
+texture = ExtResource( 7 )
+hframes = 3
+script = ExtResource( 6 )
+sprite_target_path = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -3 )
@@ -240,7 +258,7 @@ anims/walk = SubResource( 3 )
 script = ExtResource( 3 )
 
 [node name="DamageImmunityTimer" type="Timer" parent="."]
-wait_time = 0.6
+wait_time = 0.3
 one_shot = true
 
 [node name="Hitboxes" type="Node2D" parent="."]

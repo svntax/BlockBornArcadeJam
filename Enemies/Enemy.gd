@@ -95,7 +95,7 @@ func reset_damage_areas() -> void:
 		collision.disabled = true
 
 func start_attack_timer() -> void:
-	attack_timer.start(rand_range(0.5, 1.25))
+	attack_timer.start(rand_range(0.25, 1))
 
 func can_attack() -> bool:
 	return state_machine.state == "IDLE"

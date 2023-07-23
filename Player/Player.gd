@@ -5,7 +5,7 @@ signal health_changed(new_hp, max_hp)
 onready var speed = 64
 onready var velocity = Vector2()
 
-onready var max_hp = 3#16
+onready var max_hp = 16
 onready var hp = max_hp
 
 onready var body_root = $Body
