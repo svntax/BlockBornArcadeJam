@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Enemies/sword_enemy.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/EnemyFSM.gd" type="Script" id=2]
 [ext_resource path="res://Enemies/Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Enemies/shadow.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 14, 3 )
@@ -68,6 +69,30 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Shadow:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Shadow:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 2 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -138,6 +163,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [ -89.9999 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Shadow:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 1.5, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Shadow:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.15, 0.2, 0.25, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 2 ), Vector2( -12, 2 ), Vector2( -16, 2 ), Vector2( -20, 2 ), Vector2( -24, 2 ), Vector2( -44, 2 ), Vector2( -48, 2 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "hurt"
@@ -198,6 +247,11 @@ collision_layer = 4
 script = ExtResource( 3 )
 
 [node name="Body" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite" parent="Body"]
+show_behind_parent = true
+position = Vector2( 0, 2 )
+texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Body"]
 position = Vector2( 0, -21 )
