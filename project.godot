@@ -21,8 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="BlockBornArcadeJam"
-run/main_scene="res://UI/Screens/Gameplay.tscn"
+run/main_scene="res://UI/Screens/TitleScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Globals.gd"
 
 [display]
 

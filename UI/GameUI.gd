@@ -53,8 +53,12 @@ func _on_player_hp_changed(new_hp: int, max_hp: int) -> void:
 	if new_hp <= 0:
 		game_over_timer.start()
 
+func add_score(amount: int) -> void:
+	score += amount
+	Globals.set_score(score)
+
 func _on_enemy_death(enemy_points_value: int) -> void:
-	score += enemy_points_value
+	add_score(enemy_points_value)
 	update_score_label()
 
 func set_enemy_stats(name: String, current_hp: int, max_hp: int) -> void:
@@ -80,8 +84,9 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		game_over_finish_timer.start()
 
 func _on_GameOverFinishTimer_timeout():
-	# TODO: fade out to leaderboards screen
-	get_tree().change_scene("res://UI/Screens/Gameplay.tscn")
+	Globals.add_score_entry(Globals.get_current_score())
+	# TODO: fade effect when switching scenes
+	get_tree().change_scene("res://UI/Screens/LeaderboardsScreen.tscn")
 
 func update_time_label() -> void:
 	time_label.text = "TIME\n" + str(time_left)
