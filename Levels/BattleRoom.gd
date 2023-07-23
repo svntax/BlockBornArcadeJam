@@ -49,7 +49,7 @@ func clear_room() -> void:
 	camera_node.smoothing_enabled = false
 	camera_node.reset_follow_target_to_player()
 
-func _on_enemy_death() -> void:
+func _on_enemy_death(_enemy_points_value: int) -> void:
 	enemy_count -= 1
 	if enemy_count <= 0:
 		clear_room()

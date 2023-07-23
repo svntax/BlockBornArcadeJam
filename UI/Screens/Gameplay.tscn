@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://UI/GameUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Levels/BattleRoom.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Levels/EnemySpawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Player/PlayerCamera.gd" type="Script" id=10]
+[ext_resource path="res://UI/Screens/Gameplay.gd" type="Script" id=11]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 122 )
@@ -21,6 +22,7 @@ extents = Vector2( 10, 64 )
 extents = Vector2( 10, 64 )
 
 [node name="Gameplay" type="Node2D"]
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -274,7 +276,10 @@ left_wall_path = NodePath("../LeftWall")
 unique_name_in_owner = true
 position = Vector2( 56, 184 )
 
-[node name="SwordEnemy" parent="Entities" instance=ExtResource( 3 )]
+[node name="MiscEnemies" type="YSort" parent="Entities"]
+unique_name_in_owner = true
+
+[node name="SwordEnemy" parent="Entities/MiscEnemies" instance=ExtResource( 3 )]
 position = Vector2( 184, 192 )
 
 [node name="TileMapFrontGrass" type="TileMap" parent="."]
@@ -343,3 +348,4 @@ spawn_time = 4.0
 layer = 10
 
 [node name="GameUI" parent="UI" instance=ExtResource( 1 )]
+unique_name_in_owner = true

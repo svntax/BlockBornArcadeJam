@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-signal death()
+signal death(points)
 signal enemy_health_changed(enemy_name, current_hp, max_hp)
 
 export (int) var speed = 32
@@ -8,6 +8,8 @@ export (int) var melee_distance_x = 24
 export (int) var melee_distance_y = 8
 export (int) var hp = 3
 var max_hp
+
+export (int) var score_value = 500
 
 onready var velocity = Vector2()
 
@@ -32,6 +34,9 @@ func _ready():
 
 func get_enemy_name() -> String:
 	return "Adventurer"
+
+func get_score_value() -> int:
+	return score_value
 
 func _physics_process(_delta: float) -> void:
 	if can_move():

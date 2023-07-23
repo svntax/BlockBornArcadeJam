@@ -38,7 +38,7 @@ func _enter_state(new_state, _old_state):
 		actor.animation_player.play("hurt")
 		actor.attack_timer.stop()
 	elif new_state == "DEAD":
-		actor.emit_signal("death")
+		actor.emit_signal("death", actor.get_score_value())
 		actor.velocity = Vector2()
 		actor.animation_player.play("death")
 		actor.attack_timer.stop()

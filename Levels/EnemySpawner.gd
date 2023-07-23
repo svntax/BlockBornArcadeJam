@@ -47,6 +47,7 @@ func spawn_enemy() -> void:
 		return
 	var game_ui = game_ui_list[0]
 	enemy.connect("enemy_health_changed", game_ui, "set_enemy_stats")
+	enemy.connect("death", game_ui, "_on_enemy_death")
 
 func get_enemy_count() -> int:
 	return repeat_count
