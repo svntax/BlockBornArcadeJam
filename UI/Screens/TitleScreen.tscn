@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://UI/MainUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Screens/TitleScreen.gd" type="Script" id=2]
 [ext_resource path="res://UI/select_arrow.png" type="Texture" id=3]
 [ext_resource path="res://Levels/main_theme_short.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Levels/Forest/TallTree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/blue_sky_bg.png" type="Texture" id=6]
+[ext_resource path="res://Levels/Forest/tall_forest_tree_back.png" type="Texture" id=7]
+[ext_resource path="res://Levels/Forest/ForestTileSet.tres" type="TileSet" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "start_game"
@@ -13,6 +17,83 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="Background" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TallForestTreeBack" type="Sprite" parent="Background"]
+position = Vector2( 48, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack2" type="Sprite" parent="Background"]
+position = Vector2( 72, 104 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack3" type="Sprite" parent="Background"]
+position = Vector2( 88, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack4" type="Sprite" parent="Background"]
+position = Vector2( 128, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack5" type="Sprite" parent="Background"]
+position = Vector2( 160, 104 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack6" type="Sprite" parent="Background"]
+position = Vector2( 200, 96 )
+texture = ExtResource( 7 )
+
+[node name="TallForestTreeBack7" type="Sprite" parent="Background"]
+position = Vector2( 240, 104 )
+texture = ExtResource( 7 )
+
+[node name="GrassTilesBack" type="TileMap" parent="."]
+position = Vector2( 0, -8 )
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 262151, 1, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0 )
+
+[node name="Decorations" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TallTree" parent="Decorations" instance=ExtResource( 5 )]
+position = Vector2( 24, 120 )
+
+[node name="TallTree2" parent="Decorations" instance=ExtResource( 5 )]
+position = Vector2( 232, 120 )
+
+[node name="TallTree3" parent="Decorations" instance=ExtResource( 5 )]
+position = Vector2( 208, 120 )
+
+[node name="TallTree4" parent="Decorations" instance=ExtResource( 5 )]
+position = Vector2( 48, 120 )
+
+[node name="TallTree5" parent="Decorations" instance=ExtResource( 5 )]
+position = Vector2( 128, 122 )
+
+[node name="TallTree6" parent="Decorations" instance=ExtResource( 5 )]
+position = Vector2( 88, 122 )
+
+[node name="TallTree7" parent="Decorations" instance=ExtResource( 5 )]
+position = Vector2( 168, 122 )
+
+[node name="GrassDecorations" type="TileMap" parent="."]
+position = Vector2( 0, -8 )
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 262144, 3, 0, 262145, 2, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 5, 0, 262150, 5, 0, 262151, 2, 0, 327680, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393221, 0, 0, 393222, 0, 0, 393223, 0, 0, 458752, 4, 0, 458753, 2, 0, 458754, 3, 0, 458755, 4, 0, 458756, 2, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0 )
 
 [node name="UI" type="Control" parent="."]
 margin_right = 40.0
