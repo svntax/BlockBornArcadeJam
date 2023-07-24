@@ -113,6 +113,7 @@ func _on_ShowGoDelayTimer_timeout():
 func show_level_complete() -> void:
 	time_bonus_timer.stop()
 	show_stage_clear_delay_timer.start()
+	get_tree().call_group("Enemies", "make_permanently_inactive")
 
 func _on_ShowStageClearDelayTimer_timeout():
 	var time_bonus = 100

@@ -23,6 +23,8 @@ onready var attack_timer = $AttackTimer
 onready var remove_timer = $RemoveTimer
 onready var flash_remove_count = 0 # Flashing effect when being removed
 
+onready var permanently_inactive = false
+
 onready var attack_damage_areas = [
 	$Hitboxes/MeleeAttack/CollisionShape2D
 ]
@@ -49,8 +51,17 @@ func _physics_process(_delta: float) -> void:
 
 # Runs when enemy is inactive
 func inactive_process(delta) -> void:
+	if permanently_inactive:
+		return
+	
 	if check_player_in_range():
 		state_machine.set_state("IDLE")
+
+# Called if stage cleared and there are still some remaining enemies
+func make_permanently_inactive() -> void:
+	permanently_inactive = true
+	if state_machine.state != "DEAD":
+		state_machine.set_state("INACTIVE")
 
 func check_player_in_range() -> bool:
 	var dist_sq = global_position.distance_squared_to(player.global_position)
@@ -103,7 +114,8 @@ func damage(amount: int) -> void:
 		emit_signal("enemy_health_changed", get_enemy_name(), hp, max_hp)
 
 func can_take_damage() -> bool:
-	return damage_immunity_timer.is_stopped() and state_machine.state != "DEAD"
+	return damage_immunity_timer.is_stopped() and \
+		state_machine.state != "DEAD" and state_machine.state != "INACTIVE"
 
 func reset_damage_areas() -> void:
 	for collision in attack_damage_areas:
