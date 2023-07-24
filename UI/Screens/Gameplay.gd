@@ -26,10 +26,10 @@ func _ready():
 	
 	main_theme.play()
 
-func _process(_delta):
-	# DEBUG: test stage clear TODO remove later
-	if Input.is_action_just_pressed("ui_focus_next"):
-		_on_final_room_cleared()
+#func _process(_delta):
+#	# DEBUG: test stage clear
+#	if Input.is_action_just_pressed("ui_focus_next"):
+#		_on_final_room_cleared()
 
 func _on_final_room_cleared() -> void:
 	if level_complete:

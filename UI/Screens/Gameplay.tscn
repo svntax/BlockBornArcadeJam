@@ -237,6 +237,14 @@ loot_object_scene = "res://Objects/MoneyBag.tscn"
 position = Vector2( 632, 200 )
 loot_object_scene = "res://Objects/MoneyBag.tscn"
 
+[node name="WoodenCrate4" parent="Entities/Objects" instance=ExtResource( 13 )]
+position = Vector2( 992, 168 )
+loot_object_scene = "res://Objects/MoneyBag.tscn"
+
+[node name="WoodenCrate5" parent="Entities/Objects" instance=ExtResource( 13 )]
+position = Vector2( 1056, 168 )
+loot_object_scene = "res://Objects/MoneyBag.tscn"
+
 [node name="TileMapFrontGrass" type="TileMap" parent="."]
 position = Vector2( 0, -8 )
 tile_set = ExtResource( 4 )

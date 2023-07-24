@@ -4,7 +4,7 @@ onready var score : int = 0
 onready var score_label = $"%ScoreLabel"
 
 # Not necessarily in seconds
-onready var time_left : int = 99
+onready var time_left : int = 50
 onready var time_label = $"%TimeLabel"
 onready var time_bonus_timer = $TimeBonusTimer
 

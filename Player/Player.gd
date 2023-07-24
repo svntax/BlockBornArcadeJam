@@ -26,9 +26,9 @@ func _physics_process(_delta: float) -> void:
 	if can_move():
 		move()
 	
-	# DEBUG: test damage TODO remove later
-	if Input.is_action_just_pressed("ui_accept"):
-		damage(100)
+	# DEBUG: test damage TODO change to a quit option in pause menu
+#	if Input.is_action_just_pressed("ui_accept"):
+#		damage(100)
 	
 	move_and_slide(velocity)
 	# Face the right direction
