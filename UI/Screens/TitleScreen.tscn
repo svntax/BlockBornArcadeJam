@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/MainUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/Screens/TitleScreen.gd" type="Script" id=2]
+[ext_resource path="res://UI/select_arrow.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "start_game"
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource( 2 )
@@ -26,6 +30,7 @@ text = "GAME TITLE"
 align = 1
 
 [node name="StartLabel" type="Label" parent="UI"]
+visible = false
 margin_left = 24.0
 margin_top = 120.0
 margin_right = 232.0
@@ -33,5 +38,73 @@ margin_bottom = 131.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
-text = "Press Start"
+text = "Start Game"
 align = 1
+
+[node name="Buttons" type="VBoxContainer" parent="UI"]
+margin_left = 72.0
+margin_top = 144.0
+margin_right = 184.0
+margin_bottom = 198.0
+custom_constants/separation = 10
+
+[node name="StartButton" type="Button" parent="UI/Buttons"]
+unique_name_in_owner = true
+margin_right = 112.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 112, 24 )
+
+[node name="StartLabel" type="Label" parent="UI/Buttons/StartButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 4
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "Start"
+align = 1
+valign = 1
+
+[node name="SelectArrow" type="Sprite" parent="UI/Buttons/StartButton"]
+position = Vector2( 0, 10 )
+texture = ExtResource( 3 )
+
+[node name="HighScoresButton" type="Button" parent="UI/Buttons"]
+unique_name_in_owner = true
+margin_top = 34.0
+margin_right = 112.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 112, 24 )
+
+[node name="HighScoresLabel" type="Label" parent="UI/Buttons/HighScoresButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 4
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "High Scores"
+align = 1
+valign = 1
+
+[node name="SelectArrow" type="Sprite" parent="UI/Buttons/HighScoresButton"]
+position = Vector2( 0, 10 )
+texture = ExtResource( 3 )
+
+[node name="StartGameTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="HighScoresTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/start_game = SubResource( 1 )
+
+[connection signal="mouse_entered" from="UI/Buttons/StartButton" to="." method="_on_StartButton_mouse_entered"]
+[connection signal="pressed" from="UI/Buttons/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="mouse_entered" from="UI/Buttons/HighScoresButton" to="." method="_on_HighScoresButton_mouse_entered"]
+[connection signal="pressed" from="UI/Buttons/HighScoresButton" to="." method="_on_HighScoresButton_pressed"]
+[connection signal="timeout" from="StartGameTimer" to="." method="_on_StartGameTimer_timeout"]
+[connection signal="timeout" from="HighScoresTimer" to="." method="_on_HighScoresTimer_timeout"]

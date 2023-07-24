@@ -19,6 +19,8 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("attack"):
+		if not SceneManager.transition_running:
+			SoundManager.play_menu_select_sound()
 		SceneManager.change_scene("res://UI/Screens/TitleScreen.tscn", 0.5, "FADE")
 
 func fetch_scores() -> void:
