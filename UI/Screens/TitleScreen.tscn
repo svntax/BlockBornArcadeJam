@@ -80,7 +80,7 @@ position = Vector2( 208, 120 )
 position = Vector2( 48, 120 )
 
 [node name="TallTree5" parent="Decorations" instance=ExtResource( 5 )]
-position = Vector2( 128, 122 )
+position = Vector2( 128, 120 )
 
 [node name="TallTree6" parent="Decorations" instance=ExtResource( 5 )]
 position = Vector2( 88, 122 )

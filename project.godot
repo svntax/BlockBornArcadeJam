@@ -34,8 +34,8 @@ SoundManager="*res://Levels/SoundManager.tscn"
 
 window/size/width=256
 window/size/height=224
-window/size/test_width=1024
-window/size/test_height=896
+window/size/test_width=768
+window/size/test_height=672
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
