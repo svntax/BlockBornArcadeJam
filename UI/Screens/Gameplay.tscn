@@ -245,6 +245,7 @@ repeat_count = 2
 [node name="BattleRoom2" parent="Rooms" instance=ExtResource( 8 )]
 position = Vector2( 704, 0 )
 camera_node_path = NodePath("../../Camera2D")
+final_room = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/BattleRoom2"]
 position = Vector2( 128, 160 )

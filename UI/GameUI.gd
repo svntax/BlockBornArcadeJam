@@ -22,6 +22,8 @@ onready var animation_player = $AnimationPlayer
 onready var go_label = $"%GoText"
 onready var show_go_delay_timer = $ShowGoDelayTimer
 onready var effects_player = $EffectsPlayer
+onready var stage_clear_menu = $StageClearMenu
+onready var show_stage_clear_delay_timer = $ShowStageClearDelayTimer
 
 func _ready():
 	enemy_label.hide()
@@ -41,6 +43,9 @@ func _ready():
 	player_healthbar.max_value = player.get_max_hp()
 	player_healthbar.value = player.get_hp()
 	player.connect("health_changed", self, "_on_player_hp_changed")
+	
+	stage_clear_menu.connect("level_bonus_finished", self, "_on_level_bonus_finished")
+	stage_clear_menu.connect("time_bonus_finished", self, "_on_time_bonus_finished")
 
 func show_go_sign() -> void:
 	show_go_delay_timer.start()
@@ -104,3 +109,25 @@ func update_score_label() -> void:
 
 func _on_ShowGoDelayTimer_timeout():
 	effects_player.play("flash_go")
+
+func show_level_complete() -> void:
+	time_bonus_timer.stop()
+	show_stage_clear_delay_timer.start()
+
+func _on_ShowStageClearDelayTimer_timeout():
+	var time_bonus = 100
+	var time_remaining = max(time_left, 0)
+	stage_clear_menu.set_time_bonus(time_remaining * time_bonus)
+	stage_clear_menu.reveal()
+
+func _on_time_bonus_finished(bonus_amount: int) -> void:
+	add_score(bonus_amount)
+	update_score_label()
+
+func _on_level_bonus_finished(bonus_amount: int) -> void:
+	add_score(bonus_amount)
+	update_score_label()
+	# This bonus comes last, so trigger the next scene transition here
+	# TODO: next stage?
+	Globals.add_score_entry(Globals.get_current_score())
+	SceneManager.change_scene("res://UI/Screens/LeaderboardsScreen.tscn", 0.5, "FADE_THEN_CURTAIN")

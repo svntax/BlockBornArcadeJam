@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://UI/MainUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/GameUI.gd" type="Script" id=2]
 [ext_resource path="res://UI/NotJamSlabSerif11.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://UI/go_sign.png" type="Texture" id=4]
+[ext_resource path="res://UI/StageClearMenu.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 11
@@ -66,6 +67,9 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 
+[sub_resource type="Animation" id=6]
+resource_name = "stage_clear"
+
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
@@ -99,8 +103,8 @@ tracks/0/keys = {
 }
 
 [node name="GameUI" type="Control" groups=["GameUI"]]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 256.0
+margin_bottom = 224.0
 mouse_filter = 1
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
@@ -219,6 +223,7 @@ autowrap = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
 anims/game_over = SubResource( 3 )
+anims/stage_clear = SubResource( 6 )
 
 [node name="TimeBonusTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -252,9 +257,24 @@ one_shot = true
 anims/RESET = SubResource( 4 )
 anims/flash_go = SubResource( 5 )
 
+[node name="StageClearMenu" parent="." instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -64.0
+margin_top = -50.0
+margin_right = 64.0
+margin_bottom = 50.0
+
+[node name="ShowStageClearDelayTimer" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
+
 [connection signal="timeout" from="HideEnemyStatsTimer" to="." method="_on_HideEnemyStatsTimer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="timeout" from="GameOverFinishTimer" to="." method="_on_GameOverFinishTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="TimeBonusTimer" to="." method="_on_TimeBonusTimer_timeout"]
 [connection signal="timeout" from="ShowGoDelayTimer" to="." method="_on_ShowGoDelayTimer_timeout"]
+[connection signal="timeout" from="ShowStageClearDelayTimer" to="." method="_on_ShowStageClearDelayTimer_timeout"]

@@ -1,10 +1,14 @@
 tool
 extends Area2D
 
+signal cleared_final_room()
+
 const ROOM_WIDTH = 256
 
 export (NodePath) var camera_node_path = NodePath()
 var camera_node
+
+export (bool) var final_room = false
 
 var game_ui
 
@@ -23,6 +27,9 @@ func _ready():
 			printerr("WARNING: Could not find the GameUI when connecting BattleRoom.")
 			return
 		game_ui = game_ui_list[0]
+
+func is_final_room() -> bool:
+	return final_room
 
 func _process(_delta):
 	if Engine.is_editor_hint():
@@ -52,13 +59,17 @@ func enter_room() -> void:
 func clear_room() -> void:
 	# The current room is the new left limit
 	camera_node.limit_left = global_position.x
-	# Reset the camera limits
-	camera_node.limit_right = 100000
-	camera_node.smoothing_enabled = false
-	camera_node.reset_follow_target_to_player()
 	
-	if game_ui != null:
-		game_ui.show_go_sign()
+	if final_room:
+		emit_signal("cleared_final_room")
+	else:
+		# Reset the camera limits only if there's still more rooms to clear.
+		camera_node.limit_right = 100000
+		camera_node.smoothing_enabled = false
+		camera_node.reset_follow_target_to_player()
+		# Show the GO sign
+		if game_ui != null:
+			game_ui.show_go_sign()
 
 func _on_enemy_death(_enemy_points_value: int) -> void:
 	enemy_count -= 1

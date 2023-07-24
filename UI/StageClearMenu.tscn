@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/MainUITheme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/StageClearMenu.gd" type="Script" id=2]
+
+[node name="StageClearMenu" type="PanelContainer"]
+rect_min_size = Vector2( 128, 100 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 92.0
+custom_constants/margin_top = 4
+
+[node name="Content" type="VBoxContainer" parent="MarginContainer"]
+margin_top = 4.0
+margin_right = 112.0
+margin_bottom = 84.0
+custom_constants/separation = 8
+
+[node name="HeaderText" type="Label" parent="MarginContainer/Content"]
+margin_right = 112.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 64, 12 )
+custom_colors/font_color_shadow = Color( 0.00784314, 0.290196, 0.792157, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "STAGE CLEAR"
+align = 1
+valign = 1
+
+[node name="Details" type="VBoxContainer" parent="MarginContainer/Content"]
+margin_top = 20.0
+margin_right = 112.0
+margin_bottom = 78.0
+custom_constants/separation = 8
+
+[node name="TimeBonusLabel" type="Label" parent="MarginContainer/Content/Details"]
+unique_name_in_owner = true
+margin_right = 112.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 64, 12 )
+custom_colors/font_color_shadow = Color( 0.00784314, 0.290196, 0.792157, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "Time Bonus
+99x100 = 9900"
+align = 1
+valign = 1
+
+[node name="LevelBonusLabel" type="Label" parent="MarginContainer/Content/Details"]
+unique_name_in_owner = true
+margin_top = 33.0
+margin_right = 112.0
+margin_bottom = 58.0
+rect_min_size = Vector2( 64, 12 )
+custom_colors/font_color_shadow = Color( 0.00784314, 0.290196, 0.792157, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "Level Bonus
+10000"
+align = 1
+valign = 1
+
+[node name="ScoreEffectTriggerTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ScoreEffectTriggerTimer" to="." method="_on_ScoreEffectTriggerTimer_timeout"]
