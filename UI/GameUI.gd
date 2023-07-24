@@ -59,6 +59,8 @@ func _on_player_hp_changed(new_hp: int, max_hp: int) -> void:
 	# Game over
 	if new_hp <= 0:
 		game_over_timer.start()
+		var tween = get_tree().create_tween()
+		tween.tween_property(get_node("../../MainTheme"), "volume_db", -80, 1.5)
 
 func add_score(amount: int) -> void:
 	score += amount
@@ -133,5 +135,9 @@ func _on_level_bonus_finished(bonus_amount: int) -> void:
 	update_score_label()
 	# This bonus comes last, so trigger the next scene transition here
 	# TODO: next stage?
+	var main_theme = get_node_or_null("../../MainTheme")
+	if main_theme != null:
+		var tween = get_tree().create_tween()
+		tween.tween_property(get_node("../../MainTheme"), "volume_db", -80, 1)
 	Globals.add_score_entry(Globals.get_current_score())
 	SceneManager.change_scene("res://UI/Screens/LeaderboardsScreen.tscn", 0.5, "FADE_THEN_CURTAIN")

@@ -8,6 +8,8 @@ onready var high_scores_button = $"%HighScoresButton"
 
 onready var is_menu_selected = false
 
+onready var main_theme_short = $MainThemeShort
+
 func _ready():
 	Globals.reset_score()
 	start_button.grab_focus()
@@ -17,6 +19,8 @@ func _ready():
 	high_scores_button.connect("focus_entered", self, "_on_button_focused")
 
 	get_viewport().connect("gui_focus_changed", self, "_on_focus_changed")
+	
+	main_theme_short.play()
 
 func _on_focus_changed(control: Control) -> void:
 	if control == start_button:
@@ -40,6 +44,7 @@ func _on_button_focused():
 #		is_menu_selected = true
 
 func _on_StartGameTimer_timeout():
+	fade_out_music()
 	SceneManager.change_scene("res://UI/Screens/Gameplay.tscn", 1.75, "FADE_THEN_CURTAIN")
 
 func _on_StartButton_pressed():
@@ -52,7 +57,12 @@ func _on_StartButton_pressed():
 	SoundManager.play_start_game_sound()
 	start_game_timer.start()
 
+func fade_out_music() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(main_theme_short, "volume_db", -80, 1)
+
 func _on_HighScoresTimer_timeout():
+	fade_out_music()
 	SceneManager.change_scene("res://UI/Screens/LeaderboardsScreen.tscn", 0.25, "CURTAIN")
 
 func _on_HighScoresButton_pressed():

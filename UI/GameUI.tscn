@@ -274,7 +274,7 @@ one_shot = true
 
 [node name="GoNextSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -6.0
+volume_db = -4.0
 
 [connection signal="timeout" from="HideEnemyStatsTimer" to="." method="_on_HideEnemyStatsTimer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]

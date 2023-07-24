@@ -6,6 +6,7 @@ export (int, 1, 3) var stage_number = 1
 onready var game_ui = $"%GameUI"
 onready var misc_enemies = $"%MiscEnemies"
 onready var rooms = $Rooms
+onready var main_theme = $MainTheme
 
 onready var level_complete = false
 
@@ -22,6 +23,8 @@ func _ready():
 	SceneManager.set_stage_name(stage_name)
 	SceneManager.set_stage_number(stage_number)
 	SceneManager.play_stage_intro()
+	
+	main_theme.play()
 
 func _process(_delta):
 	# DEBUG: test stage clear TODO remove later
