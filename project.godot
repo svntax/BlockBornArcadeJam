@@ -104,6 +104,7 @@ attack={
 2d_physics/layer_5="ENEMY_HURTBOX"
 2d_physics/layer_6="PLAYER_DAMAGE_AREA"
 2d_physics/layer_7="ENEMY_DAMAGE_AREA"
+2d_physics/layer_8="BORDERS"
 
 [physics]
 

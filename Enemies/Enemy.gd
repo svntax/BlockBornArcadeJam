@@ -47,6 +47,7 @@ func _physics_process(_delta: float) -> void:
 		move()
 	
 	move_and_slide(velocity)
+	
 	# Face the right direction
 	set_face_direction(velocity.x)
 
