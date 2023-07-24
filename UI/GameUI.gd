@@ -25,6 +25,8 @@ onready var effects_player = $EffectsPlayer
 onready var stage_clear_menu = $StageClearMenu
 onready var show_stage_clear_delay_timer = $ShowStageClearDelayTimer
 
+onready var go_next_sound = $GoNextSound
+
 func _ready():
 	enemy_label.hide()
 	enemy_healthbar.hide()
@@ -109,6 +111,7 @@ func update_score_label() -> void:
 
 func _on_ShowGoDelayTimer_timeout():
 	effects_player.play("flash_go")
+	go_next_sound.play()
 
 func show_level_complete() -> void:
 	time_bonus_timer.stop()

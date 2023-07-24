@@ -39,12 +39,20 @@ func _enter_state(new_state, _old_state):
 		actor.velocity = Vector2()
 		actor.animation_player.play("hurt")
 		actor.attack_timer.stop()
+		# Yield to make the sounds more scattered
+		yield(get_tree().create_timer(rand_range(0.01, 0.075), false), "timeout")
+		SoundManager.play_punch_hit_sound()
 	elif new_state == "DEAD":
 		actor.emit_signal("death", actor.get_score_value())
 		actor.velocity = Vector2()
-		actor.animation_player.play("death")
 		actor.attack_timer.stop()
 		actor.remove_timer.start(0.55)
+		actor.hurtbox.collision_layer = 0
+		actor.hurtbox.collision_mask = 0
+		# Yield to make the sounds more scattered
+		yield(get_tree().create_timer(rand_range(0.01, 0.075), false), "timeout")
+		actor.animation_player.play("death")
+		SoundManager.play_punch_hit_big_sound()
 	elif new_state == "INACTIVE":
 		actor.animation_player.play("idle")
 		actor.attack_timer.stop()

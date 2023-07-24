@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://UI/MainUITheme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/GameUI.gd" type="Script" id=2]
 [ext_resource path="res://UI/NotJamSlabSerif11.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://UI/go_sign.png" type="Texture" id=4]
 [ext_resource path="res://UI/StageClearMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/go_next.wav" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 11
@@ -270,6 +271,10 @@ margin_bottom = 50.0
 [node name="ShowStageClearDelayTimer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
+
+[node name="GoNextSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -6.0
 
 [connection signal="timeout" from="HideEnemyStatsTimer" to="." method="_on_HideEnemyStatsTimer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]

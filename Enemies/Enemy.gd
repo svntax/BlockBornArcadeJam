@@ -16,6 +16,7 @@ onready var aggro_range = 248
 
 onready var body_root = $Body
 onready var hitboxes = $Hitboxes
+onready var hurtbox = $Hitboxes/HurtBox
 onready var state_machine = $StateMachine
 onready var animation_player = $AnimationPlayer
 onready var damage_immunity_timer = $DamageImmunityTimer
@@ -148,3 +149,9 @@ func _on_RemoveTimer_timeout():
 		queue_free()
 	else:
 		remove_timer.start(0.1)
+
+func play_hit_ground_single() -> void:
+	SoundManager.play_hit_ground_single_sound()
+
+func play_hit_ground_double() -> void:
+	SoundManager.play_hit_ground_double_sound()

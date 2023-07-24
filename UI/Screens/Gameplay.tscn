@@ -203,7 +203,7 @@ left_wall_path = NodePath("../LeftWall")
 
 [node name="Player" parent="Entities" instance=ExtResource( 2 )]
 unique_name_in_owner = true
-position = Vector2( 56, 184 )
+position = Vector2( 40, 184 )
 
 [node name="MiscEnemies" type="YSort" parent="Entities"]
 unique_name_in_owner = true

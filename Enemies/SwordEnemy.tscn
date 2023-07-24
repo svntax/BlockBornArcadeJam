@@ -187,6 +187,23 @@ tracks/4/keys = {
 "update": 1,
 "values": [ Vector2( 0, 2 ), Vector2( -12, 2 ), Vector2( -16, 2 ), Vector2( -20, 2 ), Vector2( -24, 2 ), Vector2( -44, 2 ), Vector2( -48, 2 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_hit_ground_double"
+}, {
+"args": [  ],
+"method": "play_hit_ground_single"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "hurt"

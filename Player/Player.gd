@@ -14,6 +14,9 @@ onready var state_machine = $StateMachine
 onready var animation_player = $AnimationPlayer
 onready var damage_immunity_timer = $DamageImmunityTimer
 
+onready var hit_dead_sound = $HitDeadSound
+onready var punch_air_sound = $PunchAirSound
+
 onready var attack_damage_areas = [
 	$Hitboxes/MeleeAttack/CollisionShape2D
 ]
@@ -68,6 +71,25 @@ func can_take_damage() -> bool:
 func reset_damage_areas() -> void:
 	for collision in attack_damage_areas:
 		collision.disabled = true
+
+# Plays only if no enemies are about to be hit
+func play_punch_air_sound() -> void:
+	var is_overlapping_enemies = false
+	var other_areas = []
+	for attack_collision in attack_damage_areas:
+		var attack_area = attack_collision.get_parent()
+		var overlapping_areas = attack_area.get_overlapping_areas()
+		if !overlapping_areas.empty():
+			is_overlapping_enemies = true
+			other_areas += overlapping_areas
+			break
+	if not is_overlapping_enemies:
+		punch_air_sound.play()
+
+func die() -> void:
+	velocity = Vector2()
+	animation_player.play("death", -1, 0.75)
+	hit_dead_sound.play()
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if state_machine.state == "ATTACK" and anim_name == "attack":
