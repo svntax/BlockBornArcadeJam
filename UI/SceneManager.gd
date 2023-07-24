@@ -1,9 +1,14 @@
 extends CanvasLayer
 
 onready var animation_player = $AnimationPlayer
+onready var stage_animation_player = $StageAnimationPlayer
 onready var bg_rect = $Bg
 onready var duration_timer = $DurationTimer
 onready var horizontal_rects = $HorizontalRects
+
+onready var stage_intro_ui = $StageName
+onready var stage_number_label = $"%StageNumberLabel"
+onready var stage_name_label = $"%StageNameLabel"
 
 onready var next_scene = ""
 onready var transition_running = false
@@ -18,6 +23,7 @@ onready var transitions = {
 
 func _ready():
 	reset_effects()
+	stage_intro_ui.hide()
 
 func change_scene(scene_path: String, duration: float = 0.5, type: String = "SLIDE_LEFT_SIDE") -> void:
 	if transition_running:
@@ -33,6 +39,16 @@ func change_scene(scene_path: String, duration: float = 0.5, type: String = "SLI
 func reset_effects() -> void:
 	bg_rect.hide()
 	horizontal_rects.hide()
+
+func play_stage_intro() -> void:
+	stage_intro_ui.show()
+	stage_animation_player.play("show_stage_name")
+
+func set_stage_number(num: int) -> void:
+	stage_number_label.text = "Stage " + str(num)
+
+func set_stage_name(stage_name: String) -> void:
+	stage_name_label.text = stage_name
 
 func play_horizontal_bars_in() -> void:
 	var delay = 0

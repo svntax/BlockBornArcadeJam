@@ -5,4 +5,4 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("attack"):
-		SceneManager.change_scene("res://UI/Screens/Gameplay.tscn", 0.5, "FADE_THEN_CURTAIN")
+		SceneManager.change_scene("res://UI/Screens/Gameplay.tscn", 1.75, "FADE_THEN_CURTAIN")

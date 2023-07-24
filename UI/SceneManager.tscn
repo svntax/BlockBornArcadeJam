@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://UI/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://UI/RectSlide.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/MainUITheme.tres" type="Theme" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -246,6 +247,62 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("StageName/StageNumberLabel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 100 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StageName/StageNameLabel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 112 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "show_stage_name"
+length = 3.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("StageName/StageNumberLabel:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75, 2.75, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -128, 100 ), Vector2( 64, 100 ), Vector2( 64, 100 ), Vector2( 256, 100 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("StageName/StageNameLabel:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.75, 2.75, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 256, 112 ), Vector2( 64, 112 ), Vector2( 64, 112 ), Vector2( -128, 112 ) ]
+}
+
 [node name="SceneManager" type="CanvasLayer"]
 layer = 100
 script = ExtResource( 1 )
@@ -313,6 +370,61 @@ margin_top = 192.0
 margin_right = 256.0
 margin_bottom = 224.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="StageName" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+theme = ExtResource( 3 )
+
+[node name="StageNumberLabel" type="Label" parent="StageName"]
+unique_name_in_owner = true
+margin_left = 64.0
+margin_top = 100.0
+margin_right = 192.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 64, 12 )
+custom_colors/font_color_shadow = Color( 0.00784314, 0.290196, 0.792157, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "STAGE 1"
+align = 1
+valign = 1
+
+[node name="StageNameLabel" type="Label" parent="StageName"]
+unique_name_in_owner = true
+margin_left = 64.0
+margin_top = 112.0
+margin_right = 192.0
+margin_bottom = 124.0
+rect_min_size = Vector2( 64, 12 )
+custom_colors/font_color_shadow = Color( 0.00784314, 0.290196, 0.792157, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "FOREST"
+align = 1
+valign = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="StageName"]
+visible = false
+margin_right = 256.0
+margin_bottom = 224.0
+
+[node name="StageNameLabel3" type="Label" parent="StageName/CenterContainer"]
+margin_left = 96.0
+margin_top = 106.0
+margin_right = 160.0
+margin_bottom = 118.0
+rect_min_size = Vector2( 64, 12 )
+custom_colors/font_color_shadow = Color( 0.00784314, 0.290196, 0.792157, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
+text = "STAGE 1"
+align = 1
+valign = 1
+
+[node name="StageAnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 8 )
+anims/show_stage_name = SubResource( 9 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="DurationTimer" to="." method="_on_DurationTimer_timeout"]
