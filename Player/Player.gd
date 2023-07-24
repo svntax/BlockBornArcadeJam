@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal health_changed(new_hp, max_hp)
+signal points_collected(amount)
 
 onready var speed = 64
 onready var velocity = Vector2()
@@ -37,6 +38,10 @@ func _physics_process(_delta: float) -> void:
 	elif velocity.x > 0:
 		body_root.scale.x = 1
 		hitboxes.scale.x = 1
+
+func collect_object(object: Node2D) -> void:
+	var object_value = object.get_score_value()
+	emit_signal("points_collected", object_value)
 
 func move() -> void:
 	# Movement

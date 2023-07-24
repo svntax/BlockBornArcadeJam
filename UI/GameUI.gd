@@ -45,6 +45,7 @@ func _ready():
 	player_healthbar.max_value = player.get_max_hp()
 	player_healthbar.value = player.get_hp()
 	player.connect("health_changed", self, "_on_player_hp_changed")
+	player.connect("points_collected", self, '_on_player_collected_points')
 	
 	stage_clear_menu.connect("level_bonus_finished", self, "_on_level_bonus_finished")
 	stage_clear_menu.connect("time_bonus_finished", self, "_on_time_bonus_finished")
@@ -61,6 +62,10 @@ func _on_player_hp_changed(new_hp: int, max_hp: int) -> void:
 		game_over_timer.start()
 		var tween = get_tree().create_tween()
 		tween.tween_property(get_node("../../MainTheme"), "volume_db", -80, 1.5)
+
+func _on_player_collected_points(amount: int) -> void:
+	add_score(amount)
+	update_score_label()
 
 func add_score(amount: int) -> void:
 	score += amount
