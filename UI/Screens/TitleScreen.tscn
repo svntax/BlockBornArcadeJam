@@ -108,7 +108,8 @@ margin_bottom = 35.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
-text = "GAME TITLE"
+text = "REIGN OF THE
+SLIME"
 align = 1
 
 [node name="StartLabel" type="Label" parent="UI"]

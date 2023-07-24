@@ -20,7 +20,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="BlockBornArcadeJam"
+config/name="ReignOfTheSlime"
 run/main_scene="res://UI/Screens/TitleScreen.tscn"
 config/icon="res://icon.png"
 
