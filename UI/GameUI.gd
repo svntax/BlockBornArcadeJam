@@ -85,8 +85,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_GameOverFinishTimer_timeout():
 	Globals.add_score_entry(Globals.get_current_score())
-	# TODO: fade effect when switching scenes
-	get_tree().change_scene("res://UI/Screens/LeaderboardsScreen.tscn")
+	SceneManager.change_scene("res://UI/Screens/LeaderboardsScreen.tscn", 0.5, "FADE_THEN_CURTAIN")
 
 func update_time_label() -> void:
 	time_label.text = "TIME\n" + str(time_left)

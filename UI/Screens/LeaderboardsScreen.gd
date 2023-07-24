@@ -19,7 +19,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("attack"):
-		get_tree().change_scene("res://UI/Screens/TitleScreen.tscn")
+		SceneManager.change_scene("res://UI/Screens/TitleScreen.tscn", 0.5, "FADE")
 
 func fetch_scores() -> void:
 	var score_entries = Globals.get_high_scores()
@@ -27,7 +27,6 @@ func fetch_scores() -> void:
 	# score_arr is an Array where [0] = score and [1] = the player's name
 	for score_arr in score_entries:
 		var score = score_arr[0]
-		print(score)
 		var player_name = score_arr[1]
 		var score_entry = ScoreEntry.instance()
 		scores_container.add_child(score_entry)
