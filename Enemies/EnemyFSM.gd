@@ -38,7 +38,8 @@ func _enter_state(new_state, _old_state):
 	elif new_state == "HURT":
 		actor.velocity = Vector2()
 		actor.animation_player.play("hurt")
-		actor.attack_timer.stop()
+		#actor.attack_timer.stop() # Too easy difficulty?
+		actor.attack_timer.paused = true
 		# Yield to make the sounds more scattered
 		yield(get_tree().create_timer(rand_range(0.01, 0.075), false), "timeout")
 		SoundManager.play_punch_hit_sound()

@@ -111,6 +111,11 @@ position = Vector2( 688, 94 )
 texture = ExtResource( 7 )
 flip_h = true
 
+[node name="TallForestTreeBack17" type="Sprite" parent="ParallaxBackground/TreesLayer"]
+position = Vector2( 896, 94 )
+texture = ExtResource( 7 )
+flip_h = true
+
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 256, 0 )
 
@@ -173,12 +178,15 @@ position = Vector2( 720, 120 )
 [node name="TallTree15" parent="Midground" instance=ExtResource( 5 )]
 position = Vector2( 864, 120 )
 
+[node name="TallTree16" parent="Midground" instance=ExtResource( 5 )]
+position = Vector2( 1128, 120 )
+
 [node name="TileMapGrassBack" type="TileMap" parent="."]
 position = Vector2( 0, -8 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 262144, 5, 0, 262145, 5, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 5, 0, 262151, 2, 0, 262152, 4, 0, 262153, 5, 0, 262154, 4, 0, 262155, 3, 0, 262156, 4, 0, 262157, 4, 0, 262158, 4, 0, 262159, 3, 0, 262160, 3, 0, 262161, 5, 0, 262162, 3, 0, 262163, 5, 0, 262164, 2, 0, 262165, 5, 0, 262166, 3, 0, 262167, 5, 0, 262168, 3, 0, 262169, 3, 0, 262170, 5, 0, 262171, 5, 0, 262172, 3, 0, 262173, 2, 0, 262174, 2, 0, 262175, 4, 0 )
+tile_data = PoolIntArray( 262144, 5, 0, 262145, 5, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 5, 0, 262151, 2, 0, 262152, 4, 0, 262153, 5, 0, 262154, 4, 0, 262155, 3, 0, 262156, 4, 0, 262157, 4, 0, 262158, 4, 0, 262159, 3, 0, 262160, 3, 0, 262161, 5, 0, 262162, 3, 0, 262163, 5, 0, 262164, 2, 0, 262165, 5, 0, 262166, 3, 0, 262167, 5, 0, 262168, 3, 0, 262169, 3, 0, 262170, 5, 0, 262171, 5, 0, 262172, 3, 0, 262173, 2, 0, 262174, 2, 0, 262175, 4, 0, 262176, 5, 0, 262177, 4, 0, 262178, 4, 0, 262179, 3, 0 )
 
 [node name="LeftWall" type="KinematicBody2D" parent="."]
 position = Vector2( 0, 112 )
@@ -234,7 +242,7 @@ position = Vector2( 0, -8 )
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 458752, 2, 0, 458753, 4, 0, 458754, 3, 0, 458755, 2, 0, 458756, 2, 0, 458757, 3, 0, 458758, 2, 0, 458759, 5, 0, 458760, 2, 0, 458761, 5, 0, 458762, 3, 0, 458763, 4, 0, 458764, 3, 0, 458765, 2, 0, 458766, 2, 0, 458767, 4, 0, 458768, 2, 0, 458769, 4, 0, 458770, 2, 0, 458771, 4, 0, 458772, 5, 0, 458773, 4, 0, 458774, 3, 0, 458775, 4, 0, 458776, 2, 0, 458777, 2, 0, 458778, 5, 0, 458779, 5, 0, 458780, 2, 0, 458781, 2, 0, 458782, 5, 0, 458783, 2, 0 )
+tile_data = PoolIntArray( 458752, 2, 0, 458753, 4, 0, 458754, 3, 0, 458755, 2, 0, 458756, 2, 0, 458757, 3, 0, 458758, 2, 0, 458759, 5, 0, 458760, 2, 0, 458761, 5, 0, 458762, 3, 0, 458763, 4, 0, 458764, 3, 0, 458765, 2, 0, 458766, 2, 0, 458767, 4, 0, 458768, 2, 0, 458769, 4, 0, 458770, 2, 0, 458771, 4, 0, 458772, 5, 0, 458773, 4, 0, 458774, 3, 0, 458775, 4, 0, 458776, 2, 0, 458777, 2, 0, 458778, 5, 0, 458779, 5, 0, 458780, 2, 0, 458781, 2, 0, 458782, 5, 0, 458783, 2, 0, 458784, 5, 0, 458785, 3, 0, 458786, 5, 0, 458787, 4, 0 )
 
 [node name="Rooms" type="Node2D" parent="."]
 __meta__ = {
@@ -258,12 +266,16 @@ target_parent_path = NodePath("../../../Entities")
 position = Vector2( 288, 200 )
 enemy_scene = "res://Enemies/SwordEnemy.tscn"
 target_parent_path = NodePath("../../../Entities")
-repeat_count = 2
+
+[node name="EnemySpawner3" parent="Rooms/BattleRoom" instance=ExtResource( 9 )]
+position = Vector2( -8, 152 )
+enemy_scene = "res://Enemies/SwordEnemy.tscn"
+target_parent_path = NodePath("../../../Entities")
+spawn_time = 2.0
 
 [node name="BattleRoom2" parent="Rooms" instance=ExtResource( 8 )]
-position = Vector2( 704, 0 )
+position = Vector2( 576, 0 )
 camera_node_path = NodePath("../../Camera2D")
-final_room = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/BattleRoom2"]
 position = Vector2( 128, 160 )
@@ -291,6 +303,50 @@ position = Vector2( 264, 208 )
 enemy_scene = "res://Enemies/SwordEnemy.tscn"
 target_parent_path = NodePath("../../../Entities")
 spawn_time = 4.0
+
+[node name="BattleRoom3" parent="Rooms" instance=ExtResource( 8 )]
+position = Vector2( 896, 0 )
+camera_node_path = NodePath("../../Camera2D")
+final_room = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/BattleRoom3"]
+position = Vector2( 128, 160 )
+shape = SubResource( 3 )
+
+[node name="EnemySpawner" parent="Rooms/BattleRoom3" instance=ExtResource( 9 )]
+position = Vector2( 264, 160 )
+enemy_scene = "res://Enemies/SwordEnemy.tscn"
+target_parent_path = NodePath("../../../Entities")
+
+[node name="EnemySpawner2" parent="Rooms/BattleRoom3" instance=ExtResource( 9 )]
+position = Vector2( -24, 176 )
+enemy_scene = "res://Enemies/SwordEnemy.tscn"
+target_parent_path = NodePath("../../../Entities")
+spawn_time = 2.0
+
+[node name="EnemySpawner3" parent="Rooms/BattleRoom3" instance=ExtResource( 9 )]
+position = Vector2( 264, 192 )
+enemy_scene = "res://Enemies/SwordEnemy.tscn"
+target_parent_path = NodePath("../../../Entities")
+spawn_time = 3.0
+
+[node name="EnemySpawner4" parent="Rooms/BattleRoom3" instance=ExtResource( 9 )]
+position = Vector2( -24, 208 )
+enemy_scene = "res://Enemies/SwordEnemy.tscn"
+target_parent_path = NodePath("../../../Entities")
+spawn_time = 4.0
+
+[node name="EnemySpawner5" parent="Rooms/BattleRoom3" instance=ExtResource( 9 )]
+position = Vector2( 264, 208 )
+enemy_scene = "res://Enemies/SwordEnemy.tscn"
+target_parent_path = NodePath("../../../Entities")
+spawn_time = 5.0
+
+[node name="EnemySpawner6" parent="Rooms/BattleRoom3" instance=ExtResource( 9 )]
+position = Vector2( -24, 160 )
+enemy_scene = "res://Enemies/SwordEnemy.tscn"
+target_parent_path = NodePath("../../../Entities")
+spawn_time = 6.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 10

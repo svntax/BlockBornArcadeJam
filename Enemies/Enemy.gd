@@ -6,7 +6,7 @@ signal enemy_health_changed(enemy_name, current_hp, max_hp)
 export (int) var speed = 32
 export (int) var melee_distance_x = 24
 export (int) var melee_distance_y = 8
-export (int) var hp = 3
+export (int) var hp = 4
 var max_hp
 
 export (int) var score_value = 500
@@ -124,7 +124,7 @@ func reset_damage_areas() -> void:
 		collision.disabled = true
 
 func start_attack_timer() -> void:
-	attack_timer.start(rand_range(0.25, 1))
+	attack_timer.start(rand_range(0.05, 0.5))
 
 func can_attack() -> bool:
 	return state_machine.state == "IDLE"

@@ -6,7 +6,7 @@ signal points_collected(amount)
 onready var speed = 64
 onready var velocity = Vector2()
 
-onready var max_hp = 16
+onready var max_hp = 8
 onready var hp = max_hp
 
 onready var body_root = $Body
