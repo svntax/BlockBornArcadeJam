@@ -1,11 +1,9 @@
 extends "res://StateMachine.gd"
 
-# IDLE, WALK, ATTACK, HURT, DEAD
-
-const CONTROLLABLE_STATES = ["IDLE", "WALK"]
+# IDLE, WALK, ATTACK, HURT, DEAD, INACTIVE
 
 func _ready():
-	call_deferred("set_state", "IDLE")
+	call_deferred("set_state", "INACTIVE")
 
 func _state_logic(_delta):
 	if state == "IDLE":
@@ -13,13 +11,17 @@ func _state_logic(_delta):
 		if actor.attack_timer.is_stopped():
 			actor.start_attack_timer()
 
-func _state_transition(_delta):
+func _state_transition(delta):
 	if state == "IDLE":
 		if not actor.close_to_player():
 			set_state("WALK")
 	elif state == "WALK":
 		if actor.close_to_player():
 			set_state("IDLE")
+		elif not actor.check_player_in_range():
+			set_state("INACTIVE")
+	elif state == "INACTIVE":
+		actor.inactive_process(delta)
 
 func _enter_state(new_state, _old_state):
 	if new_state == "IDLE":
@@ -43,6 +45,10 @@ func _enter_state(new_state, _old_state):
 		actor.animation_player.play("death")
 		actor.attack_timer.stop()
 		actor.remove_timer.start(0.55)
+	elif new_state == "INACTIVE":
+		actor.animation_player.play("idle")
+		actor.attack_timer.stop()
+		actor.velocity = Vector2()
 
 func _exit_state(old_state, _new_state):
 	if old_state == "IDLE":

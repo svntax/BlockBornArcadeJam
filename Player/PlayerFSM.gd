@@ -2,8 +2,6 @@ extends "res://StateMachine.gd"
 
 # IDLE, WALK, ATTACK, HURT, DEAD
 
-const CONTROLLABLE_STATES = ["IDLE", "WALK"]
-
 func _ready():
 	call_deferred("set_state", "IDLE")
 

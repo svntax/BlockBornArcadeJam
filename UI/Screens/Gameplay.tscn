@@ -209,7 +209,7 @@ position = Vector2( 56, 184 )
 unique_name_in_owner = true
 
 [node name="SwordEnemy" parent="Entities/MiscEnemies" instance=ExtResource( 3 )]
-position = Vector2( 184, 192 )
+position = Vector2( 336, 192 )
 
 [node name="TileMapFrontGrass" type="TileMap" parent="."]
 position = Vector2( 0, -8 )

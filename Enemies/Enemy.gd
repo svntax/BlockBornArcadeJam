@@ -12,6 +12,7 @@ var max_hp
 export (int) var score_value = 500
 
 onready var velocity = Vector2()
+onready var aggro_range = 248
 
 onready var body_root = $Body
 onready var hitboxes = $Hitboxes
@@ -45,6 +46,15 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide(velocity)
 	# Face the right direction
 	set_face_direction(velocity.x)
+
+# Runs when enemy is inactive
+func inactive_process(delta) -> void:
+	if check_player_in_range():
+		state_machine.set_state("IDLE")
+
+func check_player_in_range() -> bool:
+	var dist_sq = global_position.distance_squared_to(player.global_position)
+	return dist_sq <= aggro_range * aggro_range
 
 func set_face_direction(dir: int) -> void:
 	if sign(dir) < 0:
